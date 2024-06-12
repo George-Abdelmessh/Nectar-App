@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:nectar/core/data_source/local/cache_manager.dart';
+
+import '../end_points.dart';
+import '../local/cache_manager.dart';
 
 class DioHelper {
   static late Dio _dio;
@@ -7,7 +9,7 @@ class DioHelper {
   /// initialize Dio
   static Future<void> init() async {
     _dio = Dio(BaseOptions(
-      baseUrl: 'https://peacode.tech/ecommerce/public/api',
+      baseUrl: BASE_URL,
       receiveTimeout: const Duration(seconds: 20),
       connectTimeout: const Duration(seconds: 10),
       sendTimeout: const Duration(seconds: 20),
@@ -24,7 +26,7 @@ class DioHelper {
   }) async {
     _dio.options.headers = {
       'Accept': 'application/json',
-      'Authorization': 'Bearer ${CacheManager.getDate(key: 'token')}'
+      'Authorization': 'Bearer ${CacheManager.getDate(key: TOKEN)}'
     };
     return _dio.get(endpoint, queryParameters: query, options: options);
   }

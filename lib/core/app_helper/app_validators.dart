@@ -7,6 +7,17 @@ class AppValidators {
     }
   }
 
+  static String? minLength(String? value, int len) {
+    if (value == null || value.isEmpty) {
+      return 'Required';
+    }
+    if(value.length < len) {
+      return 'The min length of this input must be $len';
+    }
+    return null;
+
+  }
+
   // RegExp
   static String? email({String? value, String? error}) {
     if (value == null || value.isEmpty) {
