@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar/core/data_source/local/cache_manager.dart';
 import 'package:nectar/core/data_source/remote/dio_helper.dart';
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Nectar App',
       theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: const HomeScreen(),
     );
   }
 }
