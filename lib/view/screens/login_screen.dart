@@ -7,8 +7,8 @@ import 'package:nectar/core/custom_widgets/custom_text_form_field.dart';
 import 'package:nectar/core/style/app_colors.dart';
 import 'package:nectar/view/screens/sign_up_screen.dart';
 
-class LogInScreen extends StatelessWidget {
-  const LogInScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
