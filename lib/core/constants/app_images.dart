@@ -12,6 +12,9 @@ class AppImages {
   /// ******************************************** ///
   static const String whiteLogo = '$_svg/white_logo.svg';
   static const String carrotLogo = '$_svg/carrot_logo.svg';
+
+  static const String password = '$_svg/password.svg';
+
   static const String explore = '$_svg/explore.svg';
   static const String shop = '$_svg/shop.svg';
   static const String cart = '$_svg/cart.svg';
