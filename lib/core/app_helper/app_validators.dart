@@ -32,4 +32,15 @@ class AppValidators {
     }
     return null;
   }
+
+
+  static String? identical(String? value, String? other, String error) {
+    if (value == null || value.isEmpty) {
+      return  'Required';
+    }
+    if (value != other) {
+      return error;
+    }
+    return null;
+  }
 }

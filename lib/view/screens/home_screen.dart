@@ -7,6 +7,7 @@ import 'package:nectar/core/style/app_colors.dart';
 
 import '../../controller/nav_bar/nav_bar_cubit.dart';
 
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 

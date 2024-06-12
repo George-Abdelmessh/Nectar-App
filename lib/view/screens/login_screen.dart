@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nectar/controller/auth/auth_cubit.dart';
 import 'package:nectar/controller/auth/auth_states.dart';
 import 'package:nectar/core/app_helper/app_validators.dart';
-import 'package:nectar/params/login_params.dart';
+import 'package:nectar/params/auth_params.dart';
 import 'package:nectar/view/screens/home_screen.dart';
 
 import '../../core/app_helper/app_navigator.dart';
@@ -25,10 +25,17 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _password = TextEditingController();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
+  @override
+  void dispose() {
+    super.dispose();
+    _email.dispose();
+    _password.dispose();
+  }
+
   void onLoginTap() {
     if (_key.currentState!.validate()) {
       AuthCubit.get(context).login(
-        params: LoginParams(
+        params: AuthParams(
           email: _email.text,
           password: _password.text,
         ),
@@ -38,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: BlocConsumer<AuthCubit, AuthStates>(
@@ -55,6 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
               );
             }
             return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -106,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           const SizedBox(height: 25),
                           GestureDetector(
-                            onTap: () => AppNavigator.push(
+                            onTap: () => AppNavigator.pushRemove(
                                 context, const SignUpScreen()),
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
