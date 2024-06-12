@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nectar/core/app_helper/app_navigator.dart';
 import 'package:nectar/core/constants/app_size.dart';
 import 'package:nectar/core/custom_widgets/custom_text_button.dart';
 import 'package:nectar/core/style/app_colors.dart';
+import 'package:nectar/view/screens/login_screen.dart';
 import '../../core/constants/app_images.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -17,6 +19,9 @@ class OnBoardingScreen extends StatelessWidget {
         width: double.infinity,
         decoration: const BoxDecoration(
             image: DecorationImage(
+                alignment: Alignment(0.25, 0),
+
+                /// 0.0 -> 1.0
                 fit: BoxFit.cover,
                 image: AssetImage(
                   AppImages.onBoarding,
@@ -38,7 +43,13 @@ class OnBoardingScreen extends StatelessWidget {
               style: TextStyle(color: AppColors.lightGrey, fontSize: 14),
             ),
             SizedBox(height: AppSize.heightScale(context, 25)),
-            CustomTextButton(text: 'Get Started', onTap: () {})
+            CustomTextButton(
+              text: 'Get Started',
+              onTap: () => AppNavigator.pushRemove(
+                context,
+                const LoginScreen(),
+              ),
+            ),
           ],
         ),
       ),
