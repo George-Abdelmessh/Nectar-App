@@ -6,6 +6,12 @@ class AppImages {
   /// ******************************************** ///
   static const String splash = '$_images/splash.png';
   static const String onBoarding = '$_images/onboarding.png';
+
+  static const String vector = '$_images/Vector.png';
+
+  /// ******************************************** ///
+  static const String whiteLogo = '$_svg/white_logo.svg';
+
   static const String apple = '$_images/apple.png';
   static const String pulses = '$_images/pulses.png';
 
@@ -24,3 +30,4 @@ class AppImages {
   static const String search = '$_svg/search.svg';
 
 }
+
