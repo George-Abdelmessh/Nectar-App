@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nectar/core/style/app_colors.dart';
 
 import '../constants/app_size.dart';
 
@@ -8,7 +9,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.hint,
     this.controller,
     this.secureText = false,
-    this.borderColor = Colors.deepPurple,
+    this.borderColor = AppColors.primaryColor,
     this.prefix,
     this.suffix,
     this.fillColor,
@@ -17,9 +18,11 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLines = 1,
     this.minLines = 1,
     this.textInputType = TextInputType.text,
+    this.label,
   });
 
   final String hint;
+  final String? label;
   final TextEditingController? controller;
   final bool secureText;
   final Color borderColor;
@@ -34,76 +37,90 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      validator: validator ?? (val) => null,
-      obscureText: secureText,
-      maxLines: maxLines,
-      minLines: minLines,
-      keyboardType: textInputType,
-      decoration: InputDecoration(
-        constraints: minLines > 1
-            ? null
-            : BoxConstraints(
-                maxHeight: AppSize.heightScale(context, 40),
-              ),
-        fillColor: fillColor,
-        filled: isFilled,
-        // label: Icon(Icons.access_alarms),
-        // labelText: 'UserName',
-        prefixIcon: prefix,
-        prefixIconColor: Colors.grey,
-        suffixIcon: suffix,
-        // prefixIconConstraints: BoxConstraints(
-        //   maxHeight: 30,
-        //   minWidth: 120
-        // ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (label != null)
+           Text(
+            label!,
+            style: const TextStyle(
+              fontSize: 16,
+              color: AppColors.mediumGrey,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        TextFormField(
+          controller: controller,
+          validator: validator ?? (val) => null,
+          obscureText: secureText,
+          maxLines: maxLines,
+          minLines: minLines,
+          keyboardType: textInputType,
+          decoration: InputDecoration(
+            constraints: minLines > 1
+                ? null
+                : BoxConstraints(
+                    maxHeight: AppSize.heightScale(context, 40),
+                  ),
+            fillColor: fillColor,
+            filled: isFilled,
+            // label: Icon(Icons.access_alarms),
+            // labelText: 'UserName',
+            prefixIcon: prefix,
+            prefixIconColor: Colors.grey,
+            suffixIcon: suffix,
+            // prefixIconConstraints: BoxConstraints(
+            //   maxHeight: 30,
+            //   minWidth: 120
+            // ),
 
-        hintText: hint,
-        hintStyle: const TextStyle(color: Colors.black),
-        // errorBorder: const OutlineInputBorder(
-        //   borderSide: BorderSide(
-        //     color: Colors.red,
-        //   ),
-        //   borderRadius: BorderRadius.all(
-        //     Radius.circular(30),
-        //   ),
-        // ),
-        // enabledBorder: OutlineInputBorder(
-        //   borderSide: BorderSide(
-        //     color: borderColor,
-        //   ),
-        //   borderRadius: const BorderRadius.all(
-        //     Radius.circular(30),
-        //   ),
-        // ),
-        // disabledBorder: const OutlineInputBorder(
-        //   borderSide: BorderSide(color: Colors.grey),
-        //   borderRadius: BorderRadius.all(
-        //     Radius.circular(30),
-        //   ),
-        // ),
-        // focusedBorder: const OutlineInputBorder(
-        //   borderSide: BorderSide(
-        //     color: Colors.black,
-        //   ),
-        //   borderRadius: BorderRadius.all(
-        //     Radius.circular(30),
-        //   ),
-        // ),
-        //---------
-        // border: const OutlineInputBorder(
-        //   borderSide: BorderSide(color: Colors.red),
-        //   borderRadius: BorderRadius.all(
-        //     Radius.circular(30),
-        //   ),
-        // ),
-      ),
-      style: const TextStyle(
-        height: 1,
-        fontSize: 18,
-        color: Colors.black,
-      ),
+            hintText: hint,
+            hintStyle: const TextStyle(color: Colors.black),
+            // errorBorder: const OutlineInputBorder(
+            //   borderSide: BorderSide(
+            //     color: Colors.red,
+            //   ),
+            //   borderRadius: BorderRadius.all(
+            //     Radius.circular(30),
+            //   ),
+            // ),
+            // enabledBorder: OutlineInputBorder(
+            //   borderSide: BorderSide(
+            //     color: borderColor,
+            //   ),
+            //   borderRadius: const BorderRadius.all(
+            //     Radius.circular(30),
+            //   ),
+            // ),
+            // disabledBorder: const OutlineInputBorder(
+            //   borderSide: BorderSide(color: Colors.grey),
+            //   borderRadius: BorderRadius.all(
+            //     Radius.circular(30),
+            //   ),
+            // ),
+            // focusedBorder: const OutlineInputBorder(
+            //   borderSide: BorderSide(
+            //     color: Colors.black,
+            //   ),
+            //   borderRadius: BorderRadius.all(
+            //     Radius.circular(30),
+            //   ),
+            // ),
+            //---------
+            // border: const OutlineInputBorder(
+            //   borderSide: BorderSide(color: Colors.red),
+            //   borderRadius: BorderRadius.all(
+            //     Radius.circular(30),
+            //   ),
+            // ),
+          ),
+          style: const TextStyle(
+            height: 1,
+            fontSize: 18,
+            color: Colors.black,
+          ),
+        ),
+      ],
     );
   }
 }
