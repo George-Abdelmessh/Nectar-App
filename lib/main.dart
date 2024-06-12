@@ -1,8 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nectar/controller/nav_bar/nav_bar_cubit.dart';
 import 'package:nectar/core/data_source/local/cache_manager.dart';
 import 'package:nectar/core/data_source/remote/dio_helper.dart';
-import 'package:nectar/view/screens/product_details_screen.dart';
 import 'package:nectar/view/screens/splash_screen.dart';
 
 import 'core/style/app_theme.dart';
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Nectar App',
       theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
-      home: const ProductDetailsScreen(),
+      home: const SplashScreen(),
     );
   }
 }

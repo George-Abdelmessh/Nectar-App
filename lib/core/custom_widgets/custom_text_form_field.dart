@@ -61,47 +61,47 @@ class CustomTextFormField extends StatelessWidget {
 
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.black),
-        errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(30),
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: borderColor,
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(30),
-          ),
-        ),
-        disabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.all(
-            Radius.circular(30),
-          ),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.black,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(30),
-          ),
-        ),
+        // errorBorder: const OutlineInputBorder(
+        //   borderSide: BorderSide(
+        //     color: Colors.red,
+        //   ),
+        //   borderRadius: BorderRadius.all(
+        //     Radius.circular(30),
+        //   ),
+        // ),
+        // enabledBorder: OutlineInputBorder(
+        //   borderSide: BorderSide(
+        //     color: borderColor,
+        //   ),
+        //   borderRadius: const BorderRadius.all(
+        //     Radius.circular(30),
+        //   ),
+        // ),
+        // disabledBorder: const OutlineInputBorder(
+        //   borderSide: BorderSide(color: Colors.grey),
+        //   borderRadius: BorderRadius.all(
+        //     Radius.circular(30),
+        //   ),
+        // ),
+        // focusedBorder: const OutlineInputBorder(
+        //   borderSide: BorderSide(
+        //     color: Colors.black,
+        //   ),
+        //   borderRadius: BorderRadius.all(
+        //     Radius.circular(30),
+        //   ),
+        // ),
         //---------
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red),
-          borderRadius: BorderRadius.all(
-            Radius.circular(30),
-          ),
-        ),
+        // border: const OutlineInputBorder(
+        //   borderSide: BorderSide(color: Colors.red),
+        //   borderRadius: BorderRadius.all(
+        //     Radius.circular(30),
+        //   ),
+        // ),
       ),
       style: const TextStyle(
         height: 1,
-        fontSize: 12,
+        fontSize: 18,
         color: Colors.black,
       ),
     );
