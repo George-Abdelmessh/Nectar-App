@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar/core/data_source/local/cache_manager.dart';
 import 'package:nectar/core/data_source/remote/dio_helper.dart';
-import 'package:nectar/view/screens/log_in_screen.dart';
 import 'package:nectar/view/screens/splash_screen.dart';
 
 import 'core/style/app_theme.dart';
@@ -24,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Nectar App',
       theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
-      home: const LogInScreen(),
+      home: const SplashScreen(),
     );
   }
 }
