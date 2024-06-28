@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nectar/controller/auth/auth_cubit.dart';
+import 'package:nectar/controller/home/home_cubit.dart';
 import 'package:nectar/controller/nav_bar/nav_bar_cubit.dart';
 
 import 'package:nectar/core/data_source/local/cache_manager.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => NavBarCubit()),
+        BlocProvider(create: (context) => HomeCubit()),
       ],
       child: MaterialApp(
         title: 'Nectar App',

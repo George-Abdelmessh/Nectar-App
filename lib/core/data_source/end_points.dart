@@ -7,3 +7,5 @@ const String BASE_URL = 'https://peacode.tech/ecommerce/public/api';
 
 const String LOGIN = '/login';
 const String REGISTER = '/register';
+
+const String PRODUCTS = '/products';

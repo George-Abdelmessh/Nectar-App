@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:nectar/core/constants/app_images.dart';
 import 'package:nectar/core/style/app_colors.dart';
+import 'package:nectar/model/products_model.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  const ProductCard({super.key, required this.data});
+
+  final Product data;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +28,19 @@ class ProductCard extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.center,
-                child: Image.asset(AppImages.apple),
+                child: Image.network(
+                  data.image,
+                  errorBuilder: (context, error, _) {
+                    return SvgPicture.asset(
+                      AppImages.carrotLogo,
+                    );
+                  },
+                ),
               ),
               const SizedBox(height: 20),
-              const Text(
-                'Red Apple',
-                style: TextStyle(
+              Text(
+                data.name,
+                style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: AppColors.black),
@@ -45,9 +56,9 @@ class ProductCard extends StatelessWidget {
               const SizedBox(height: 20),
               Row(
                 children: [
-                  const Text(
-                    '\$4.99',
-                    style: TextStyle(
+                  Text(
+                    '\$${data.price}',
+                    style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: AppColors.black),
@@ -62,8 +73,10 @@ class ProductCard extends StatelessWidget {
                         color: AppColors.primaryColor,
                         borderRadius: BorderRadius.all(Radius.circular(17)),
                       ),
-                      child: const Icon(Icons.add_rounded,
-                      color: AppColors.white,),
+                      child: const Icon(
+                        Icons.add_rounded,
+                        color: AppColors.white,
+                      ),
                     ),
                   )
                 ],
