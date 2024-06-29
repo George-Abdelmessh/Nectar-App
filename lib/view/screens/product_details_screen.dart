@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nectar/controller/products/products_cubit.dart';
 import 'package:nectar/core/constants/app_images.dart';
 import 'package:nectar/core/style/app_colors.dart';
 import 'package:nectar/model/products_model.dart';
@@ -36,7 +38,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         children: [
                           IconButton(
                             icon: const Icon(Icons.arrow_back_ios_new),
-                            onPressed: () {},
+                            onPressed: () => Navigator.pop(context),
                           ),
                           IconButton(
                             icon: const Icon(Icons.share),
@@ -66,7 +68,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Row(
                   children: [
-                     Text(
+                    Text(
                       data.name,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
@@ -74,15 +76,25 @@ class ProductDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    InkWell(
-                      onTap: () {},
-                      child: const Icon(Icons.favorite_border_sharp),
+                    BlocBuilder<ProductsCubit, ProductsStates>(
+                      builder: (context, state) {
+                        return GestureDetector(
+                          onTap: () =>
+                              ProductsCubit.get(context).favHandler(data.id),
+                          child: Icon(
+                            data.isFav
+                                ? Icons.favorite_outlined
+                                : Icons.favorite_border_sharp,
+                            color: data.isFav ? Colors.red : Colors.black,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
               ),
               const SizedBox(height: 13),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,

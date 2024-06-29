@@ -14,12 +14,14 @@ class ProductData {
   final String name;
   final double price;
   final String image;
+  bool isFav;
 
   ProductData({
     required this.id,
     required this.name,
     required this.price,
     required this.image,
+    required this.isFav,
   });
 
   factory ProductData.fromJson(Map<String, dynamic> json) => ProductData(
@@ -27,5 +29,6 @@ class ProductData {
         name: json['name'],
         price: json['price']?.toDouble(),
         image: json['image'],
+        isFav: json['is_favorite'],
       );
 }

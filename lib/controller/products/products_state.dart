@@ -13,3 +13,13 @@ class ProductsErrorState extends ProductsStates {
 
   ProductsErrorState({required this.errorMsg});
 }
+
+class LoadingState extends ProductsStates {}
+
+class SuccessState extends ProductsStates {}
+
+class ErrorState extends ProductsStates {
+  final String errorMsg;
+
+  ErrorState({required this.errorMsg});
+}

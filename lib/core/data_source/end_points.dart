@@ -9,6 +9,8 @@ const String LOGIN = '/login';
 const String REGISTER = '/register';
 
 const String PRODUCTS = '/products';
+const String FAV = '/favorites';
+
 const String ADD_CART = '/cart/add';
 const String CART = '/cart';
 const String PLACE_ORDER = '/orders';

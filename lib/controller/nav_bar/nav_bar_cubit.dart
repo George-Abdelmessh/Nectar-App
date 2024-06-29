@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../view/screens/cart_screen.dart';
+import '../../view/screens/fav_screen.dart';
 import '../../view/screens/home_screen_content.dart';
 
 part 'nav_bar_state.dart';
 
 class NavBarCubit extends Cubit<NavBarState> {
-  NavBarCubit(): super(NavBarInitState());
+  NavBarCubit() : super(NavBarInitState());
 
   static NavBarCubit get(BuildContext context) => BlocProvider.of(context);
 
@@ -18,17 +19,14 @@ class NavBarCubit extends Cubit<NavBarState> {
       child: Text('Explore'),
     ),
     const CartScreen(),
-    const Center(
-      child: Text('Favourite'),
-    ),
+    const FavScreen(),
     const Center(
       child: Text('Account'),
     ),
   ];
 
-  void changeNavBarIndex (int index) {
+  void changeNavBarIndex(int index) {
     currentIndex = index;
     emit(ChangeNavBarState());
   }
-
 }

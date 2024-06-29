@@ -96,18 +96,21 @@ class CartCubit extends Cubit<CartState> {
   }
 
   void increaseQuantity(int productId) {
-    cartData!.data.items
+    cartData!
+        .data.items
         .firstWhere((item) => item.product.id == productId)
         .quantity += 1;
     emit(CartSuccessState());
   }
 
   void decreaseQuantity(int productId) {
-    if (cartData!.data.items
-            .firstWhere((item) => item.product.id == productId)
-            .quantity >
+    if (cartData!
+        .data.items
+        .firstWhere((item) => item.product.id == productId)
+        .quantity >
         1) {
-      cartData!.data.items
+      cartData!
+          .data.items
           .firstWhere((item) => item.product.id == productId)
           .quantity -= 1;
       emit(CartSuccessState());

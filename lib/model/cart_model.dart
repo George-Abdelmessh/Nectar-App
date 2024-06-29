@@ -42,7 +42,7 @@ class Item {
   factory Item.fromMap(Map<String, dynamic> json) => Item(
     id: json["id"],
     product: ProductData.fromJson(json["product"]),
-    quantity: json["quantity"],
+    quantity: json["quantity"]?? 0,
   );
 
 }
