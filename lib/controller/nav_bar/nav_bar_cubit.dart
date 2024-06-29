@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../view/screens/cart_screen.dart';
 import '../../view/screens/home_screen_content.dart';
 
 part 'nav_bar_state.dart';
@@ -16,9 +17,7 @@ class NavBarCubit extends Cubit<NavBarState> {
     const Center(
       child: Text('Explore'),
     ),
-    const Center(
-      child: Text('Cart'),
-    ),
+    const CartScreen(),
     const Center(
       child: Text('Favourite'),
     ),

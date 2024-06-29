@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nectar/controller/cart/cart_cubit.dart';
+import 'package:nectar/controller/products/products_cubit.dart';
+import 'package:nectar/core/app_helper/app_navigator.dart';
 import 'package:nectar/core/constants/app_images.dart';
 import 'package:nectar/core/style/app_colors.dart';
 import 'package:nectar/model/products_model.dart';
 
+import '../screens/product_details_screen.dart';
+
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.data});
 
-  final Product data;
+  final ProductData data;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => AppNavigator.push(
+          context,
+          ProductDetailsScreen(
+            data: data,
+          )),
       child: Container(
         width: 173,
         decoration: BoxDecoration(
@@ -30,6 +39,8 @@ class ProductCard extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Image.network(
                   data.image,
+                  width: 70,
+                  height: 70,
                   errorBuilder: (context, error, _) {
                     return SvgPicture.asset(
                       AppImages.carrotLogo,
@@ -65,7 +76,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () => CartCubit.get(context).addToCart(data.id),
                     child: Container(
                       width: 40,
                       height: 40,

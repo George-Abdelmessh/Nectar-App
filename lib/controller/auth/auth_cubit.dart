@@ -28,7 +28,7 @@ class AuthCubit extends Cubit<AuthStates> {
       );
       if (response.statusCode == 200) {
         showSuccessToast('Login Success!');
-        CacheManager.saveData(key: TOKEN, value: encode(response.data[TOKEN]));
+        CacheManager.saveData(key: TOKEN, value: response.data[TOKEN]);
         CacheManager.saveData(key: EMAIL, value: encode(params.email));
         CacheManager.saveData(key: PASSWORD, value: encode(params.password));
         emit(AuthSuccessState());
@@ -73,7 +73,6 @@ class AuthCubit extends Cubit<AuthStates> {
   }
 
   String decode(final String text) {
-
     final Codec<String, String> base64Decode = utf8.fuse(base64);
     final String decoded = base64Decode.decode(text);
     return decoded;

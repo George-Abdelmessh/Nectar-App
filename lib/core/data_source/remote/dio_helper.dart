@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../end_points.dart';
 import '../local/cache_manager.dart';
@@ -10,12 +12,23 @@ class DioHelper {
   static Future<void> init() async {
     _dio = Dio(BaseOptions(
       baseUrl: BASE_URL,
-      receiveTimeout: const Duration(seconds: 20),
-      connectTimeout: const Duration(seconds: 10),
-      sendTimeout: const Duration(seconds: 20),
+      receiveTimeout: const Duration(seconds: 30),
+      connectTimeout: const Duration(seconds: 30),
       receiveDataWhenStatusError: true,
-      validateStatus: (status) => status! < 599,
+      followRedirects: false,
+      validateStatus: (status) => status! < 500,
     ));
+    _dio.interceptors.addAll([
+      if (kDebugMode)
+        PrettyDioLogger(
+          requestBody: true,
+          error: true,
+          responseBody: true,
+          requestHeader: false,
+          request: false,
+          responseHeader: false,
+        ),
+    ]);
   }
 
   /// Dio Get Request

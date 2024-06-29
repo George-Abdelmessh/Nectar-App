@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nectar/controller/home/home_cubit.dart';
 import 'package:nectar/core/constants/app_images.dart';
 import 'package:nectar/core/style/app_colors.dart';
 
 import '../../controller/nav_bar/nav_bar_cubit.dart';
+import '../../controller/products/products_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    HomeCubit.get(context).getHomeData();
+    ProductsCubit.get(context).getAllProducts();
   }
 
   @override

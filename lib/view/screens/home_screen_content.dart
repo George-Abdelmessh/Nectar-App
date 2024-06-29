@@ -66,7 +66,7 @@ class HomeScreenContent extends StatelessWidget {
               ),
               SizedBox(height: 20),
               SizedBox(
-                height: 248,
+                height: 260,
                 child: ProductWidget(),
               ),
 

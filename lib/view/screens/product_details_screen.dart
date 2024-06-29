@@ -1,11 +1,14 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:nectar/core/constants/app_images.dart';
 import 'package:nectar/core/style/app_colors.dart';
+import 'package:nectar/model/products_model.dart';
 import 'package:nectar/view/widgets/custem_botton.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({super.key});
+  const ProductDetailsScreen({super.key, required this.data});
+
+  final ProductData data;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,6 @@ class ProductDetailsScreen extends StatelessWidget {
                             icon: const Icon(Icons.arrow_back_ios_new),
                             onPressed: () {},
                           ),
-                          const Spacer(),
                           IconButton(
                             icon: const Icon(Icons.share),
                             onPressed: () {},
@@ -45,7 +47,15 @@ class ProductDetailsScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: Center(
-                        child: Image.asset(AppImages.vector),
+                        child: Image.network(
+                          data.image,
+                          errorBuilder: (context, error, _) {
+                            return SvgPicture.asset(
+                              AppImages.carrotLogo,
+                              width: 120,
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],
@@ -56,9 +66,9 @@ class ProductDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Row(
                   children: [
-                    const Text(
-                      'Naturel Red Apple',
-                      style: TextStyle(
+                     Text(
+                      data.name,
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
                       ),
@@ -72,14 +82,14 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 13),
-              const Padding(
-                padding: EdgeInsets.all(20.0),
+               Padding(
+                padding: const EdgeInsets.all(20.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      '\$4.99',
-                      style: TextStyle(
+                      '\$${data.price}',
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
                       ),
@@ -168,7 +178,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         color: Color(0xffF3603F),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     GestureDetector(

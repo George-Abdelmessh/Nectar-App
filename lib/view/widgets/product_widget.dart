@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nectar/controller/home/home_cubit.dart';
 import 'package:nectar/core/style/app_colors.dart';
 import 'package:nectar/view/cards/product_card.dart';
+
+import '../../controller/products/products_cubit.dart';
 
 class ProductWidget extends StatelessWidget {
   const ProductWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final HomeCubit cubit = HomeCubit.get(context);
-    return BlocBuilder<HomeCubit, HomeStates>(
+    final ProductsCubit cubit = ProductsCubit.get(context);
+    return BlocBuilder<ProductsCubit, ProductsStates>(
       builder: (context, state) {
-        if (state is HomeLoadingState) {
+        if (state is ProductsLoadingState) {
           return const Center(
             child: CircularProgressIndicator(color: AppColors.green),
           );
-        } else if (state is HomeErrorState) {
+        } else if (state is ProductsErrorState) {
           return Center(
             child: Text(
               state.errorMsg,
