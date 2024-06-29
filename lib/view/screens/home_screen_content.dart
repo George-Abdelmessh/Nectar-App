@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nectar/controller/auth/auth_cubit.dart';
 
 import '../../core/constants/app_images.dart';
 import '../../core/style/app_colors.dart';
@@ -23,10 +24,12 @@ class HomeScreenContent extends StatelessWidget {
             children: [
               const SizedBox(height: 7),
               CustomIconWithText(
-                icon: SvgPicture.asset(
-                  AppImages.location,
+                icon: Icon(
+                  Icons.waving_hand_outlined,
+                  color: AppColors.darkGrey.withOpacity(0.8),
                 ),
-                text: 'Dhaka, Banassre',
+                text:
+                    'Welcome ${AuthCubit.get(context).userName!}'.toUpperCase(),
                 textStyle: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -40,7 +43,6 @@ class HomeScreenContent extends StatelessWidget {
             hint: 'Search Store',
             prefix: Icon(Icons.search_rounded),
           ),
-
           const Column(
             children: [
               SizedBox(height: 30),
@@ -128,12 +130,10 @@ class HomeScreenContent extends StatelessWidget {
               //   child: ProductWidget(),
               // ),
               // SizedBox(height: 30),
-
             ],
           )
         ],
       ),
     );
-
   }
 }

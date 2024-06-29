@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nectar/view/widgets/logout_widget.dart';
 import '../../view/screens/cart_screen.dart';
 import '../../view/screens/fav_screen.dart';
 import '../../view/screens/home_screen_content.dart';
@@ -20,9 +21,7 @@ class NavBarCubit extends Cubit<NavBarState> {
     ),
     const CartScreen(),
     const FavScreen(),
-    const Center(
-      child: Text('Account'),
-    ),
+    const LogoutWidget(),
   ];
 
   void changeNavBarIndex(int index) {

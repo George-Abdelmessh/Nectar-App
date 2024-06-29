@@ -16,6 +16,8 @@ class AuthCubit extends Cubit<AuthStates> {
 
   static AuthCubit get(BuildContext context) => BlocProvider.of(context);
 
+  String? userName;
+
   /// Login Method
   Future<void> login({
     required final AuthParams params,
@@ -27,6 +29,7 @@ class AuthCubit extends Cubit<AuthStates> {
         data: params.toJson(),
       );
       if (response.statusCode == 200) {
+        userName = response.data['user']['name'];
         showSuccessToast('Login Success!');
         CacheManager.saveData(key: TOKEN, value: response.data[TOKEN]);
         CacheManager.saveData(key: EMAIL, value: encode(params.email));
@@ -57,6 +60,28 @@ class AuthCubit extends Cubit<AuthStates> {
         emit(AuthSuccessState());
       } else {
         // showErrorToast(response.data['message']);
+        showErrorToast('Something went wrong plz try again!');
+        emit(AuthErrorState('Something went wrong plz try again!'));
+      }
+    } catch (e) {
+      showErrorToast(e.toString());
+      emit(AuthErrorState(e.toString()));
+    }
+  }
+
+  /// Logout Method
+  Future<void> logout() async {
+    try {
+      final Response response = await DioHelper.post(
+        endpoint: LOGOUT,
+        data: {},
+      );
+      if (response.statusCode == 200) {
+        CacheManager.removeData(key: TOKEN);
+        CacheManager.removeData(key: EMAIL);
+        CacheManager.removeData(key: PASSWORD);
+        emit(AuthSuccessState());
+      } else {
         showErrorToast('Something went wrong plz try again!');
         emit(AuthErrorState('Something went wrong plz try again!'));
       }
