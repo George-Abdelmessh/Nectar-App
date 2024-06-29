@@ -15,7 +15,7 @@ class CartModel {
 
 class Data {
   final int id;
-  final List<Item> items;
+  List<Item> items;
 
   Data({
     required this.id,
@@ -29,15 +29,18 @@ class Data {
 }
 
 class Item {
+  int id;
   final ProductData product;
-  final int quantity;
+  int quantity;
 
   Item({
+    required this.id,
     required this.product,
     required this.quantity,
   });
 
   factory Item.fromMap(Map<String, dynamic> json) => Item(
+    id: json["id"],
     product: ProductData.fromJson(json["product"]),
     quantity: json["quantity"],
   );

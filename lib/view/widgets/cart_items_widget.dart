@@ -13,21 +13,21 @@ class CardItemsWidget extends StatelessWidget {
     final CartCubit cubit = CartCubit.get(context);
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
-        if(state is CartLoadingState) {
+        if (state is CartLoadingState) {
           return const Center(
             child: CircularProgressIndicator(color: AppColors.green),
           );
         }
         return ListView.separated(
           itemBuilder: (context, index) {
-            return SizedBox();
-            // return CartItemCard(data: cubit.cartData!.data.items[index]);
+            return CartItemCard(
+              data: cubit.cartData!.data.items[index],
+            );
           },
           separatorBuilder: (context, index) {
             return const SizedBox(height: 10);
           },
-          itemCount:2,
-          // itemCount: cubit.cartData!.data.items.length,
+          itemCount: cubit.cartData!.data.items.length,
         );
       },
     );

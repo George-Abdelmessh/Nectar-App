@@ -55,4 +55,62 @@ class CartCubit extends Cubit<CartState> {
       emit(CartErrorState(errorMsg: e.toString()));
     }
   }
+
+  Future<void> placeOrder() async {
+    try {
+      if (cartData!.data.items.isNotEmpty) {
+        final Response response = await DioHelper.post(
+          endpoint: PLACE_ORDER,
+          data: {},
+        );
+
+        if (response.statusCode == 201) {
+          showSuccessToast('The product Added Successfully');
+          cartData!.data.items = [];
+        } else {
+          showErrorToast('Something went wrong!');
+        }
+      } else {
+        showErrorToast('The Cart Is Empty Try To Add Products!');
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> removeCartItem(int productId) async {
+    try {
+      final Response response = await DioHelper.delete(
+        endpoint: '$CART_REMOVE/$productId',
+      );
+
+      if (response.statusCode == 200) {
+        getCart();
+        showSuccessToast('The product removed Successfully');
+      } else {
+        showErrorToast('Something went wrong!');
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  void increaseQuantity(int productId) {
+    cartData!.data.items
+        .firstWhere((item) => item.product.id == productId)
+        .quantity += 1;
+    emit(CartSuccessState());
+  }
+
+  void decreaseQuantity(int productId) {
+    if (cartData!.data.items
+            .firstWhere((item) => item.product.id == productId)
+            .quantity >
+        1) {
+      cartData!.data.items
+          .firstWhere((item) => item.product.id == productId)
+          .quantity -= 1;
+      emit(CartSuccessState());
+    }
+  }
 }
